@@ -1,0 +1,76 @@
+/*
+ * TODO: In a min-max-exists future
+ *
+ * Use the min/max function to replace vw by min/max(vw, vh) to scale with the viewport height
+ * and width.
+ */
+
+:root {
+    --size: 30vw;
+    --duration: 5s;
+}
+
+body {
+    margin: 0;
+}
+
+.stage {
+    background-color: #212121;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.cube {
+    position: relative;
+    width: var(--size);
+    height: var(--size);
+    margin: auto;
+    transform-style: preserve-3d;
+    animation: rotation var(--duration) linear infinite;
+}
+
+.face {
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    background: rgba(220, 220, 220, 0.6);
+    border: 2px solid rgba(250, 250, 250, .6);
+    --translate: translateZ(calc(var(--size) / 2));
+}
+
+.front {
+    background: rgba(250, 0, 0, 0.4);
+    transform:  var(--translate);
+}
+
+.back {
+    transform: rotateY(180deg) var(--translate);
+}
+
+.right {
+    transform: rotateY(90deg) var(--translate);
+}
+
+.left {
+    transform: rotateY(-90deg) var(--translate);
+}
+
+.top {
+    transform: rotateX(90deg) var(--translate);
+}
+
+.bottom {
+    transform: rotateX(-90deg) var(--translate);
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotateX(0) rotateY(0);
+    }
+
+    100% {
+        transform: rotateX(360deg) rotateY(360deg);
+    }
+}
+
